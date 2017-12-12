@@ -6,9 +6,9 @@ You will develop a single-page application featuring a map of your neighborhood 
 
 For this project, I had to create a map of my neighborhood using various APIs.
 
-## Running Instructions Locally
+## Running Instructions
 
-1. To run a test, please [click here](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Flmedinatriana.github.io%2Fwebsite-optimization "Google PageSpeed")
+1. To run the map, please [click here](https://lmedinatriana.github.io/Neighborhood-Map/ "Neighborhood Map")
 2. Search or click for a place on the list.
 3. Click on the red marker for more information.
 
