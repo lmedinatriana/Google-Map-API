@@ -1,101 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    
-    <title>Neighborhood Map</title>
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    
-
-        <div id="wrapper">
-        <div class="overlay"></div>
-    
-       <!-- Sidebar -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-            <ul class="nav sidebar-nav">
-                <li class="sidebar-brand"><a href="#">My Neighborhood</a></li>
-                <li class="dropdown">
-                  <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Search" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
+    <head>
+        <!-- ***************************** META  *****************************  -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>Neighborhood Map</title>
+        <!-- ***************************** STYLES  *****************************  -->
+        <!-- BOOTSTRAP(CDN) -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <nav>
+            <div class="container-fluid h-100">
+                <div class="row h-100">
+                    <main class="col p-0 navbar-inverse">
+                        <a href class="float-left m-3 navbar-light" data-target="#sidebar" data-toggle="collapse">
+                            <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar4">
+                            <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </a>
+                        <div class="content bg-inverse">
+                            <!-- Map Content -->
+                            <div id="map">
+                                <!-- Map -->
+                                <p class="map_error"></p>
+                            </div>
+                        </div>
+                    </main>
+                    <!-- ***************************** NAV  *****************************  -->
+                    <nav class="col-2 collapse bg-inverse pt-2 h-100 sidebar_width" id="sidebar">
+                        <h4 class="brand-name text-white">My Neighborhood Map</h4>
+                        <!-- Search Input -->
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input class="search form-control input-lg" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-info btn-lg" type="button">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <ul class="nav flex-column" data-bind="foreach: myLocations">
+                            <a href="#"><li class="nav-item text-white location_list" data-bind="text: title, click: $parent.populateAndBounceMarker"></li></a>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurants<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">American</a></li>
-                    <li><a href="#">Vegetarian</a></li>
-                    <li><a href="#">Asian Fusion</a></li>
-                    <li><a href="#">Latin American</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nightlife<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Cocktail Bar</a></li>
-                    <li><a href="#">Lounge</a></li>
-                    <li><a href="#">Music Venue</a></li>
-                    <li><a href="#">Comedy Club</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Banks<span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Chase Bank</a></li>
-                    <li><a href="#">Wells Fargo Bank</a></li>
-                    <li><a href="#">TD Bank</a></li>
-                    <li><a href="#">Bank of America</a></li>
-                  </ul>
-                </li>
-            </ul>
         </nav>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-                <span class="hamb-top"></span>
-          <span class="hamb-middle"></span>
-        <span class="hamb-bottom"></span>
-            </button>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-     <!-- Knockout framework -->
-    <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
-  </body>
+        <!-- ***************************** LIBRARY *****************************  -->
+        <!-- Knockout framework -->
+        <script src="js/knockout-3.4.2.js"></script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <!-- Ajax -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <!-- Bootstrap CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <!-- Custom  -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/app.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbNd0vwv1nyQXaofH5cag2hFb8AQhiR_A&callback=startApp" onerror="googleError()"></script>
+    </body>
 </html>
